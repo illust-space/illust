@@ -131,13 +131,18 @@ model-viewer{
     bottom: 5%;
     left: 5%;
     right: 5%;
-	background-color: var(--color2);
+    background-color: var(--color2);
+    padding: 0 5%;
 }
 #uPopup input{
     display: initial;
     font-family: 'Montserrat', sans-serif;
-    margin: 3% 13%;
-    width: 74%;
+    margin: 3% 10%;
+    width: 80%;
+}
+select{
+    background-color: var(--color1);
+    font-family: 'Montserrat', sans-serif;
 }
 .mobile{
     display: none;

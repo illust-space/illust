@@ -56,10 +56,10 @@ var modelControl={
                          ${model.Name}
                          <br>Author: ${model.Author||"None"}
                          <br>Licence:${model.Licence||"None"}
-                         <br>Hash: ${Object.keys(modelControl.modelList)}
+                         <br>Hash: ${m[0]+m[1]+m[2]+m[3]+m[4]+m[5]+"..."+m[61]+m[62]+m[63]}
                      </div>`
                  }         
-                 console.log(Object.keys(modelControl.modelList)[m]);
+                 console.log(Object.keys(modelControl.modelList));
                  modelControl.display(0);
             }
         }

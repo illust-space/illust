@@ -22,11 +22,20 @@ function uploadPopup(){
     document.body.innerHTML+=`
         <div id="uPopup">
             <div>
-                <input id="name" placeholder="Model Name"></input>
-                <input id="author" placeholder="Author"></input>
-                <input id="licence" placeholder="Licence (Default: CC-BY)"></input>
+                <h1>Register</h1>
+                Name of the art piece:
+                <input id="name" placeholder=""></input>
+                Artist:
+                <input id="author" placeholder=""></input>
+                Licence
+                <select id="licence">
+                    <option>CC-BY</option>
+                </select>
+
+                <div></div>
+                
                 <div class="button" onmousedown="register()">
-                    Register
+                    Hash the Mesh
                 </div>
             </div>
         </div>
