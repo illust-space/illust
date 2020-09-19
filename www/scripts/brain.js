@@ -1,6 +1,34 @@
 var formData;
 var files;
+let provider;
+function sidebar(l){
+    if(l){
+        document.getElementById("sidebar").style="";
+        document.getElementById("overlay").style="";
+    }else{
+        document.getElementById("sidebar").style="width:310px";
+        document.getElementById("overlay").style="display:initial;opacity:40%";
+    }
+}
+async function account(){
+    if(provider){
+    }else{
+        await window.ethereum.enable();
+        let provider = await new ethers.providers.Web3Provider(web3.currentProvider);
+    }
+    location.hash="account";
+    
+}
+function connectAccount(){
+    if(provider){
+    }
+    else{
 
+        window.ethereum.enable();
+        provider = new ethers.providers.Web3Provider(web3.currentProvider);
+    }
+    
+}
 function upload(){
     document.getElementById('upload').click();
     document.getElementById('upload').addEventListener('change', readFileAsString);
@@ -65,3 +93,10 @@ function register(){
     document.getElementById("uPopup").style="display:none;";
     
 }
+
+window.ethereum.on('accountsChanged', function (accounts) {
+    changePage();
+});
+window.ethereum.on('networkChanged', function (accounts) {
+    changePage();
+});

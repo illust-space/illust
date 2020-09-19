@@ -25,17 +25,7 @@ app.get('/models', (req, res) => {
   return res.send(JSON.stringify(hashList));
 });
 app.get('/models/:model', (req, res) => {
-  if(req.params.model){
-    var c = hydra.chains[req.params.chain]
-    if(req.params.block){
-      return res.send(c[req.params.block]);
-    }else{
-      return res.send(c);
-    }
-  }else{
-    return res.send(hydra.chains);
-  }
-  
+  res.sendFile(__dirname + `/www/assets/models/${req.params.model}.glb`);
 });
 app.post('/upload', async (req, res) => {
   console.log(req.files);
@@ -47,6 +37,7 @@ app.post('/upload', async (req, res) => {
               message: 'No file uploaded'
           });
       } else {
+          try{
           let info = JSON.parse(req.body.info);
           //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
           let m = req.files.model;
@@ -62,8 +53,14 @@ app.post('/upload', async (req, res) => {
           //send response
           res.send({
               status: true,
-              message: `File uploaded successfully:\nHash: ${ha}`
+              message: `File uploaded successfully:\n\nHash: ${ha}`
           });
+        }catch(e){
+          res.send({
+              status: false,
+              message: `File could not be uploaded:\n\nRecieved following error: ${e}`
+          });
+        }
       }
   } catch (err) {
       res.status(500).send(err);
