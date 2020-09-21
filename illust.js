@@ -26,7 +26,7 @@ app.get('/models', (req, res) => {
   return res.send(JSON.stringify(hashList));
 });
 app.get('/models/:model', (req, res) => {
-  res.sendFile(__dirname + `/www/assets/models/${req.params.model}/scene.gltf`);
+  res.sendFile(__dirname + `/www/assets/models/${req.params.model}.zip`);
 });
 app.post('/upload', async (req, res) => {
   console.log(req.files);
@@ -49,9 +49,10 @@ app.post('/upload', async (req, res) => {
 
           //Use the mv() method to place the file in upload directory 
           hashList[ha]={info};
-          //m.mv('./www/assets/models/' + ha +'.gltf');
-          fs.createReadStream(m)
-          .pipe(unzipper.Extract({ path: `./www/assets/models/${ha}` }));
+          m.mv('./www/assets/models/' + ha +'.zip');
+          let p = "./www/assets/models/"+ha;
+          fs.createReadStream('./www/assets/models/' + ha +'.zip')
+          .pipe(unzipper.Extract({ path: p }));
           //send response
           res.send({
               status: true,
