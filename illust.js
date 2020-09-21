@@ -25,7 +25,7 @@ app.get('/models', (req, res) => {
   return res.send(JSON.stringify(hashList));
 });
 app.get('/models/:model', (req, res) => {
-  res.sendFile(__dirname + `/www/assets/models/${req.params.model}.glb`);
+  res.sendFile(__dirname + `/www/assets/models/${req.params.model}.gltf`);
 });
 app.post('/upload', async (req, res) => {
   console.log(req.files);
@@ -48,7 +48,7 @@ app.post('/upload', async (req, res) => {
 
           //Use the mv() method to place the file in upload directory 
           hashList[ha]={info};
-          m.mv('./www/assets/models/' + ha +'.glb');
+          m.mv('./www/assets/models/' + ha +'.gltf');
 
           //send response
           res.send({
